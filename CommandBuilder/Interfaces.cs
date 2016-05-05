@@ -39,8 +39,53 @@ namespace CommandBuilder.Interfaces
     //    - ValidatorController
 
 
-    public interface IBuilder
-    {
+    // EVERYTHING IS A COMMAND
 
+
+    // ABSTRACTION LAYER 1
+    public interface ICommand {
+        void Execute(IReceiver receiver);
     }
+    public interface IReceiver {
+        void Action();
+    }
+
+    public abstract class Invoker {
+        IList<ICommand> Commands { get; }
+
+
+        public virtual void Invoke()
+        {
+
+        }
+    }
+
+
+    public class PrintHelloCommand : ICommand
+    {
+        public void Execute(IReceiver receiver)
+        {
+
+        }
+    }
+
+
+
+
+
+
+    // ABSTRACTION LAYER 2
+    public interface IBuilder : IReceiver { }
+    public interface IProduct : IReceiver, ICommand { }
+    public interface IDirector { }
+
+
+
+
+
+    // ABSTRACTION LAYER 3
+    
+
+
+
 }
